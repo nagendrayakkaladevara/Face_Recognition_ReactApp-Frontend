@@ -1,46 +1,76 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Face Recognition React App
 
-## Available Scripts
 
-In the project directory, you can run:
+This is a React and TypeScript-based face recognition application using the `face-api.js` library. Users can register their faces with a name and later be identified by face recognition.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Face Registration: Register a user's face with a name using `face-api.js`.
+- Face Recognition: Detect a user's face and match it with the previously registered faces.
+- Loader: Shows a loading state during face detection and registration.
+- Form Validation: Validates the user name before registering the face.
+- Local Storage: Stores registered users' face descriptors in the browser's local storage.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+Clone the repository
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone https://github.com/your-username/face-recognition-app.git
+cd face-recognition-app
+```
+Install dependencies
+```bash
+npm install
+```
+Download face-api.js models
+```bash
+# Go to the public folder in your project
+cd public
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Download the models from face-api.js repository
+mkdir models
+cd models
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Download models
+wget https://github.com/justadudewhohacks/face-api.js-models/raw/master/tiny_face_detector_model-weights_manifest.json
+wget https://github.com/justadudewhohacks/face-api.js-models/raw/master/face_landmark_68_model-weights_manifest.json
+wget https://github.com/justadudewhohacks/face-api.js-models/raw/master/face_recognition_model-weights_manifest.json
+```
+Run the app
+```bash
+npm start
+```
+The app should now be running on http://localhost:3000.
 
-### `npm run eject`
+## Usage
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### Register a Face
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Enter your name in the input field.
+2. Click Register Face while your face is visible on the webcam. The face will be registered with your name and saved in local storage.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Detect a Face
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Click Find My Name. The app will detect your face and try to match it with any previously registered faces.
+2. If a match is found, the app will display your name. If no match is found, it will show "No match found."
 
-## Learn More
+#### Project Structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `src/FaceRecognition.tsx`: The main component handling face registration and recognition.
+- `public/models/`: Pre-trained models for face detection and recognition.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Dependencies
+
+- `react`: Frontend framework.
+- `typescript`: Type checking for the application.
+- `face-api.js`: Face detection and recognition library.
+
+#### Validations and Error Handling
+
+- The app ensures that users provide a name before registering their face.
+- While face detection or registration is in progress, a loader is displayed, and buttons are disabled to prevent multiple clicks.
+
